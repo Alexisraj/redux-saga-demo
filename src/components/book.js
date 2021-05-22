@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 const BookTile = styled.div`
   padding: 2%;
   margin: 2%;
-  box-shadow: 0 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1px 2px #1800ff;
   width: 300px;
-
   text-align: center;
   font-family: arial;
   :hover {
-    box-shadow: 0 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
   }
   & button {
     border: none;
@@ -27,6 +27,10 @@ const BookTile = styled.div`
   & button:hover {
     opacity: 0.7;
   }
+  & img {
+    padding-top: 10px;
+    border: 1px solid grey;
+  }
 `;
 const BookRate = styled.p`
   color: grey;
@@ -38,11 +42,16 @@ const Book = (props) => {
     <BookTile>
       <img alt="book Image" height={150} width={100} src={props.thumbnailUrl} />
       <h4>{props.title}</h4>
-      {props.auther && props.auther.map((a) => <BookRate>{a}</BookRate>)}
+      <p>By</p>
+      {props.auther &&
+        props.auther.slice(0, 1).map((a) => <BookRate>{a}</BookRate>)}
       <p>{props.shortDescription}</p>
-      <p>
-        <button>Add to Cart</button>
-      </p>
+
+      <div style={{ bottom: "5px" }}>
+        <p>
+          <button onClick={props.onClick}>More Details</button>
+        </p>
+      </div>
     </BookTile>
   );
 };

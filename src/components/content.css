@@ -1,0 +1,53 @@
+.tableSection {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tg {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.tg td {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+  width: 100px;
+}
+.tg th {
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+.tg .tg-2fdn {
+  text-align: center;
+  vertical-align: middle;
+}
+.tg .tg-0lax {
+  text-align: center;
+  vertical-align: middle;
+}
+.detailsPop {
+  background: linear-gradient(skyblue, pink);
+  width: 100%;
+  height: 100%;
+}
+.close > img {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  right: 20px;
+  top: 20px;
+}

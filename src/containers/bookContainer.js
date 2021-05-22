@@ -9,14 +9,15 @@ const mapStateToProps = (state) => {
     error: state.bookReducer.error,
     selectedBook: state.bookReducer.selectedBook,
     totalBooks: state.bookReducer.totalBooks,
+    showPopup: state.bookReducer.showPopup,
+    currentPageNo: state.bookReducer.currentPageNo,
   };
 };
 
 const mapDispathToProps = (dispatch) => {
   return {
     fetchBooks: (pageNo) => dispatch(actions.fetchBooks(pageNo)),
-    updateSelectedBook: (bookId) =>
-      dispatch(actions.UpdateSelectedBook(bookId)),
+    updateSelectedBook: (book) => dispatch(actions.UpdateSelectedBook(book)),
     clearSelection: () => dispatch(actions.clearSelection()),
   };
 };

@@ -13,10 +13,13 @@ function filterJson(filterValue) {
 }
 
 function* fetchBooks(payload) {
-  // console.log("saga called", payload.pageNo);
   yield delay(5000);
   const newData = filterJson(payload.pageNo);
-  yield put(actions.fetchBooksSuccess(newData));
+  if (newData) yield put(actions.fetchBooksSuccess(newData));
+  else
+    yield put(
+      actions.fetchBooksFailure({ message: "Error in Fetching Records..." })
+    );
 }
 
 function* bookSaga() {
