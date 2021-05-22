@@ -4,7 +4,7 @@ const App = (props) => {
   useEffect(() => {
     props.fetchBooks(1);
   }, [props]);
-  return <div>alex</div>;
+  return <div>this is samples</div>;
 };
 
 export default App;
