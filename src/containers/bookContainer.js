@@ -4,9 +4,11 @@ import * as actions from "../actoins/bookAction";
 
 const mapStateToProps = (state) => {
   return {
-    books: state.books,
-    selectedBook: state.selectedBook,
-    totalBooks: state.totalBooks,
+    books: state.bookReducer.books,
+    loading: state.bookReducer.loading,
+    error: state.bookReducer.error,
+    selectedBook: state.bookReducer.selectedBook,
+    totalBooks: state.bookReducer.totalBooks,
   };
 };
 
