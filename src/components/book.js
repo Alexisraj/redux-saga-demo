@@ -3,11 +3,16 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const BookTile = styled.div`
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
+  padding: 2%;
+  margin: 2%;
+  box-shadow: 0 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+
   text-align: center;
   font-family: arial;
+  :hover {
+    box-shadow: 0 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
   & button {
     border: none;
     outline: 0;
@@ -31,13 +36,8 @@ const BookRate = styled.p`
 const Book = (props) => {
   return (
     <BookTile>
-      <image
-        alt="book Image"
-        height={150}
-        width={100}
-        src={props.thumbnailUrl}
-      />
-      <h1>{props.title}</h1>
+      <img alt="book Image" height={150} width={100} src={props.thumbnailUrl} />
+      <h4>{props.title}</h4>
       {props.auther && props.auther.map((a) => <BookRate>{a}</BookRate>)}
       <p>{props.shortDescription}</p>
       <p>
