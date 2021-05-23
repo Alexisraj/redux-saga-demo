@@ -4,15 +4,9 @@ import Book from "./book";
 import Modal from "react-awesome-modal";
 import Details from "./Details";
 import GridLoader from "react-spinners/GridLoader";
-import { css } from "@emotion/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
 const BookCollection = styled.div`
   margin: 10%;
   display: grid;
@@ -58,7 +52,7 @@ const Content = (props) => {
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       localStorage.setItem("height", window.scrollY);
-      console.log("you reached bottom");
+
       props?.fetchBooks(props.currentPageNo + 1);
     }
   };
@@ -70,7 +64,7 @@ const Content = (props) => {
         <p>{props.books?.length ?? 0}</p>
       </div>
       <div>
-        {props.books?.length > 0 && (
+        {props.books?.length > 0 ? (
           <BookCollection>
             {props.books.map((b) => (
               <Book
@@ -81,15 +75,23 @@ const Content = (props) => {
               />
             ))}
           </BookCollection>
+        ) : (
+          <div
+            style={{
+              fontSize: "2rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "500px",
+              maxHeight: "1000px",
+            }}
+          >
+            Loading...
+          </div>
         )}
         {props.loading && (
           <LoadCss>
-            <GridLoader
-              color={"blue"}
-              loading={props.loading}
-              override={override}
-              size={50}
-            />
+            <GridLoader color={"blue"} loading={props.loading} size={50} />
           </LoadCss>
         )}
       </div>

@@ -19,7 +19,6 @@ const About = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "500px",
-
         maxHeight: "1000px",
       }}
     >
