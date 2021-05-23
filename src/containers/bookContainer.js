@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
 import App from "../App";
 import * as actions from "../actoins/bookAction";
+// import * as Selecters from '../selectors/bookSelector';
 
 const mapStateToProps = (state) => {
   return {
-    books: state.bookReducer.books,
-    loading: state.bookReducer.loading,
-    error: state.bookReducer.error,
-    selectedBook: state.bookReducer.selectedBook,
-    totalBooks: state.bookReducer.totalBooks,
-    showPopup: state.bookReducer.showPopup,
-    currentPageNo: state.bookReducer.currentPageNo,
+    books: state.bookStore.books,
+    loading: state.bookStore.loading,
+    error: state.bookStore.error,
+    selectedBook: state.bookStore.selectedBook,
+    totalBooks: state.bookStore.totalBooks,
+    showPopup: state.bookStore.showPopup,
+    currentPageNo: state.bookStore.currentPageNo,
   };
 };
 

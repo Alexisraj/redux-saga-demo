@@ -37,9 +37,9 @@ const Content = (props) => {
       if (localStorage.getItem("height")) {
         showSuccess();
         window.scrollTo(0, localStorage.getItem("height"));
+        localStorage.removeItem("height");
       }
     }
-    localStorage.removeItem("height");
   }, [props]);
 
   const toastOptions = {
@@ -66,6 +66,9 @@ const Content = (props) => {
   return (
     <>
       <ToastContainer />
+      <div className="Counter">
+        <p>{props.books?.length ?? 0}</p>
+      </div>
       <div>
         {props.books?.length > 0 && (
           <BookCollection>

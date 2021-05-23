@@ -24,9 +24,9 @@ const About = () => {
       }}
     >
       About Us Page
-      <div className="fullPage">
+      <div className="">
         <LoadCss>
-          <GridLoader color={"black"} loading={true} size={50} />
+          {/* <GridLoader color={"black"} loading={true} size={50} /> */}
         </LoadCss>
       </div>
     </div>
