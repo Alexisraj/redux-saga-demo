@@ -19,7 +19,12 @@ const BookCollection = styled.div`
   grid-gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
 `;
-
+const LoadCss = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 165px;
+`;
 const Content = (props) => {
   console.log("test", props);
 
@@ -28,20 +33,26 @@ const Content = (props) => {
     props.updateSelectedBook(book);
   };
   useEffect(() => {
-    if (!props.loading) window.scrollTo(0, localStorage.getItem("height"));
+    if (!props.loading) {
+      if (localStorage.getItem("height")) {
+        showSuccess();
+        window.scrollTo(0, localStorage.getItem("height"));
+      }
+    }
     localStorage.removeItem("height");
   }, [props]);
 
-  const showErrors = () => {
-    toast.error("🦄 Wow so easy!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+  };
+  const showSuccess = () => {
+    toast.success("New Products Loaded!", toastOptions);
   };
 
   const handleScroll = () => {
@@ -54,6 +65,7 @@ const Content = (props) => {
   window.addEventListener("scroll", handleScroll);
   return (
     <>
+      <ToastContainer />
       <div>
         {props.books?.length > 0 && (
           <BookCollection>
@@ -67,13 +79,16 @@ const Content = (props) => {
             ))}
           </BookCollection>
         )}
-        {props.error && showErrors()}
-        <GridLoader
-          color={"blue"}
-          loading={props.loading}
-          override={override}
-          size={50}
-        />
+        {props.loading && (
+          <LoadCss>
+            <GridLoader
+              color={"blue"}
+              loading={props.loading}
+              override={override}
+              size={50}
+            />
+          </LoadCss>
+        )}
       </div>
       <div>
         <Modal
