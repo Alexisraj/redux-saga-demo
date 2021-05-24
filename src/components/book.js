@@ -6,11 +6,12 @@ const BookTile = styled.div`
   padding: 2%;
   margin: 2%;
   box-shadow: 0 0 1px 2px #1800ff;
+  border-radius: 10px;
   width: 300px;
   text-align: center;
   font-family: arial;
   :hover {
-    box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 4px 8px rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }
   & button {
