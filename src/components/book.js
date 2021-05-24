@@ -49,7 +49,7 @@ const Book = (props) => {
 
       <div style={{ bottom: "5px" }}>
         <p>
-          <button onClick={props.onClick}>More Details</button>
+          <button onClick={props.onClick}>Add to Cart</button>
         </p>
       </div>
     </BookTile>
