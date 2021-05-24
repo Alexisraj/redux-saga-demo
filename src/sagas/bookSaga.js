@@ -1,22 +1,21 @@
-import { delay, put, takeLatest } from "redux-saga/effects";
+import { call, delay, put, takeLatest } from "redux-saga/effects";
 import * as actions from "../actoins/bookAction";
 import * as AC from "../constants/bookContstants";
+import axios from "axios";
 
-import data from "./books.json";
+const API_URL = "http://localhost:3000/books?";
 
-function filterJson(filterValue) {
-  let filteredData = [];
-  if (data && filterValue) {
-    filteredData = data.filter((b) => b.pageNo === filterValue);
-  }
-  return filteredData;
+function fetchAPI(pageNo) {
+  const response = axios.get(`${API_URL}pageNo=${pageNo}`);
+  return response;
 }
 
 function* fetchBooks(payload) {
-  // console.log("saga called", payload.pageNo);
-  yield delay(5000);
-  const newData = filterJson(payload.pageNo);
-  yield put(actions.fetchBooksSuccess(newData));
+  yield delay(4000);
+  const pageNo = payload?.pageNo;
+  const response = yield call(fetchAPI, pageNo);
+  if (response?.data) yield put(actions.fetchBooksSuccess(response?.data));
+  else yield put(actions.fetchBooksFailure("Error in Fetching Records..."));
 }
 
 function* bookSaga() {

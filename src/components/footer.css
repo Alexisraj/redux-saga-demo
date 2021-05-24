@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  background: #1800ff;
+  height: 300px;
+  width: 100%;
+
+  bottom: 0;
+}
+.footer > h1 {
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  top: 100px;
+}

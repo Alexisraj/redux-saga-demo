@@ -20,3 +20,6 @@ export function clearSelection() {
 export function fetchBooksSuccess(books) {
   return { type: AC.BOOK_FETCH_SUCCESS, books };
 }
+export function fetchBooksFailure(message) {
+  return { type: AC.BOOK_FETCH_FAILURE, message };
+}
