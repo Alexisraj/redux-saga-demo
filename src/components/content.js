@@ -71,8 +71,10 @@ const Content = (props) => {
       </div>
       <div className="Cart">
         <div style={{ margin: "0 auto", display: "table" }}>
-          <img className="Cartimg" src={"./cart.png"} alt="a"></img>
-          <p className="CartSize">{props.cart?.length}</p>
+          <img className="Cartimg" src={"./cart.svg"} alt="a"></img>
+          {props.cart?.length > 0 && (
+            <p className="CartSize">{props.cart?.length}</p>
+          )}
         </div>
       </div>
       <div style={{ minHeight: "700px" }}>
