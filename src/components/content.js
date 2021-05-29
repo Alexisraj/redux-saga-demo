@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Book from "./book";
-import Modal from "react-awesome-modal";
-import Details from "./Details";
+import "./content.css";
 import GridLoader from "react-spinners/GridLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,17 +12,23 @@ const BookCollection = styled.div`
   grid-gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
 `;
-const LoadCss = styled.div`
+const Loader = styled.div`
   position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10001;
+`;
+const Loading = styled.div`
+  width: 165px;
   top: 50%;
   left: 50%;
-  width: 165px;
+  position: fixed;
 `;
 const Content = (props) => {
-  console.log("test", props);
-
   const onBookClick = (book) => {
-    console.log("selected Book", book);
     props.updateSelectedBook(book);
   };
   useEffect(() => {
@@ -63,8 +68,8 @@ const Content = (props) => {
       <div className="Counter">
         <p>{props.books?.length ?? 0}</p>
       </div>
-      <div>
-        {props.books?.length > 0 ? (
+      <div style={{ minHeight: "700px" }}>
+        {props.books?.length > 0 && (
           <BookCollection>
             {props.books.map((b) => (
               <Book
@@ -75,41 +80,14 @@ const Content = (props) => {
               />
             ))}
           </BookCollection>
-        ) : (
-          <div
-            style={{
-              fontSize: "2rem",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "500px",
-              maxHeight: "1000px",
-            }}
-          >
-            Loading...
-          </div>
         )}
         {props.loading && (
-          <LoadCss>
-            <GridLoader color={"blue"} loading={props.loading} size={50} />
-          </LoadCss>
+          <Loader>
+            <Loading>
+              <GridLoader color={"white"} loading={props.loading} size={50} />
+            </Loading>
+          </Loader>
         )}
-      </div>
-      <div>
-        <Modal
-          visible={props.showPopup}
-          width="600px"
-          height="600px"
-          effect="fadeInUp"
-          onClickAway={() => props.clearSelection()}
-        >
-          <div>
-            <Details
-              book={props.selectedBook}
-              onClose={() => props.clearSelection()}
-            />
-          </div>
-        </Modal>
       </div>
     </>
   );
