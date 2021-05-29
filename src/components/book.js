@@ -39,7 +39,7 @@ const BookRate = styled.p`
 `;
 
 const Book = (props) => {
-  const isAddedInCart = props.cart && props.cart.indexOf(props.id);
+  const isAddedInCart = props.cart && props.cart.includes(props.id);
   const onClick = (id) => {
     props.onClick(id, isAddedInCart ? "remove" : "");
   };

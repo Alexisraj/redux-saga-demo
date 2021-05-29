@@ -82,7 +82,7 @@ const Content = (props) => {
               <Book
                 auther={b.authors}
                 cart={props.cart}
-                id={b.isbn}
+                id={b.id}
                 title={b.title}
                 thumbnailUrl={b.thumbnailUrl}
                 onClick={onBookClick}

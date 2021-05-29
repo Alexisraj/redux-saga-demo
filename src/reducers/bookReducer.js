@@ -46,7 +46,7 @@ const bookReducer = (state = initial_state, action) => {
     case AC.REMOVE_FROM_CART: {
       let prevCart = state.cart;
 
-      prevCart = prevCart.filter((c) => c.bookId !== action.bookId);
+      prevCart = prevCart.filter((c) => c !== action.bookId);
 
       return { ...state, cart: prevCart };
     }
