@@ -12,26 +12,27 @@ const BookTile = styled.div`
   font-family: arial;
   :hover {
     box-shadow: 1px 1px 4px 8px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
   }
-  & button {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
+
   & button:hover {
     opacity: 0.7;
+    cursor: pointer;
   }
   & img {
     padding-top: 10px;
     border: 1px solid grey;
   }
+`;
+const AddBtn = styled.button`
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: ${(p) => (p.isAdded ? "blue" : "#000")};
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
 `;
 const BookRate = styled.p`
   color: grey;
@@ -54,9 +55,9 @@ const Book = (props) => {
 
       <div style={{ bottom: "5px" }}>
         <p>
-          <button onClick={() => onClick(props.id)}>
+          <AddBtn isAdded={isAddedInCart} onClick={() => onClick(props.id)}>
             {isAddedInCart ? "Remove" : "Add to Cart"}
-          </button>
+          </AddBtn>
         </p>
       </div>
     </BookTile>
