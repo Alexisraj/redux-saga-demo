@@ -5,6 +5,7 @@ import "./content.css";
 import GridLoader from "react-spinners/GridLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router-dom";
 
 const BookCollection = styled.div`
   margin: 10%;
@@ -28,6 +29,8 @@ const Loading = styled.div`
   position: fixed;
 `;
 const Content = (props) => {
+  let history = useHistory();
+
   const onBookClick = (bookId, type) => {
     if (type === "remove") props.removeItem(bookId);
     else props.addToCart(bookId);
@@ -71,7 +74,12 @@ const Content = (props) => {
       </div>
       <div className="Cart">
         <div style={{ margin: "0 auto", display: "table" }}>
-          <img className="Cartimg" src={"./cart.svg"} alt="a"></img>
+          <img
+            className="Cartimg"
+            src={"./cart.svg"}
+            alt="a"
+            onClick={() => history.push("/cart")}
+          ></img>
           {props.cart?.length > 0 && (
             <p className="CartSize">{props.cart?.length}</p>
           )}
