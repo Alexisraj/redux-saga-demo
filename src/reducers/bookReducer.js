@@ -8,6 +8,7 @@ const initial_state = {
   showPopup: false,
   totalBooks: false,
   currentPageNo: false,
+  cart: false,
 };
 const bookReducer = (state = initial_state, action) => {
   switch (action.type) {
@@ -34,15 +35,20 @@ const bookReducer = (state = initial_state, action) => {
         error: action.message,
       };
     }
-    case AC.SELECTED_BOOK: {
+    case AC.ADD_TO_CART: {
+      let prevCart = state.cart;
+      if (!prevCart) prevCart = [];
       return {
         ...state,
-        selectedBook: action.selectedBook,
-        showPopup: true,
+        cart: prevCart.concat(action.bookId),
       };
     }
-    case AC.CLEAR_SELECTION: {
-      return { ...state, selectedBook: false, showPopup: false };
+    case AC.REMOVE_FROM_CART: {
+      let prevCart = state.cart;
+
+      prevCart = prevCart.filter((c) => c !== action.bookId);
+
+      return { ...state, cart: prevCart };
     }
     default:
       return { ...state };

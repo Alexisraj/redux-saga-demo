@@ -5,6 +5,7 @@ import "./content.css";
 import GridLoader from "react-spinners/GridLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router-dom";
 
 const BookCollection = styled.div`
   margin: 10%;
@@ -28,8 +29,11 @@ const Loading = styled.div`
   position: fixed;
 `;
 const Content = (props) => {
-  const onBookClick = (book) => {
-    props.updateSelectedBook(book);
+  let history = useHistory();
+
+  const onBookClick = (bookId, type) => {
+    if (type === "remove") props.removeItem(bookId);
+    else props.addToCart(bookId);
   };
   useEffect(() => {
     if (!props.loading) {
@@ -68,15 +72,30 @@ const Content = (props) => {
       <div className="Counter">
         <p>{props.books?.length ?? 0}</p>
       </div>
+      <div className="Cart">
+        <div style={{ margin: "0 auto", display: "table" }}>
+          <img
+            className="Cartimg"
+            src={"./cart.svg"}
+            alt="a"
+            onClick={() => history.push("/cart")}
+          ></img>
+          {props.cart?.length > 0 && (
+            <p className="CartSize">{props.cart?.length}</p>
+          )}
+        </div>
+      </div>
       <div style={{ minHeight: "700px" }}>
         {props.books?.length > 0 && (
           <BookCollection>
             {props.books.map((b) => (
               <Book
                 auther={b.authors}
+                cart={props.cart}
+                id={b.id}
                 title={b.title}
                 thumbnailUrl={b.thumbnailUrl}
-                onClick={() => onBookClick(b)}
+                onClick={onBookClick}
               />
             ))}
           </BookCollection>

@@ -6,15 +6,16 @@ export function fetchBooks(pageNo) {
     type: AC.BOOK_FETCH_REQUEST,
   };
 }
-export function UpdateSelectedBook(data) {
+export function AddToCart(bookId) {
   return {
-    type: AC.SELECTED_BOOK,
-    selectedBook: data,
+    type: AC.ADD_TO_CART,
+    bookId: bookId,
   };
 }
-export function clearSelection() {
+export function removeInCart(bookId) {
   return {
-    type: AC.CLEAR_SELECTION,
+    type: AC.REMOVE_FROM_CART,
+    bookId: bookId,
   };
 }
 export function fetchBooksSuccess(books) {
