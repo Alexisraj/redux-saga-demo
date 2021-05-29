@@ -21,12 +21,12 @@ const Header = () => {
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Home
+                Shop
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-links" onClick={closeMobileMenu}>
-                About
+              <Link to="/cart" className="nav-links" onClick={closeMobileMenu}>
+                Cart
               </Link>
             </li>
             <li className="nav-item">

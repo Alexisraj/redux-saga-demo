@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import GridLoader from "react-spinners/GridLoader";
 import "./pages.css";
 
 const LoadCss = styled.div`
@@ -10,7 +9,7 @@ const LoadCss = styled.div`
   width: 165px;
 `;
 
-const About = () => {
+const Cart = () => {
   return (
     <div
       style={{
@@ -22,7 +21,7 @@ const About = () => {
         maxHeight: "1000px",
       }}
     >
-      About Us Page
+      Cart Page
       <div className="">
         <LoadCss>
           {/* <GridLoader color={"black"} loading={true} size={50} /> */}
@@ -32,4 +31,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Cart;

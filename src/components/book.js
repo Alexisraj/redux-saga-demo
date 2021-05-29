@@ -6,31 +6,33 @@ const BookTile = styled.div`
   padding: 2%;
   margin: 2%;
   box-shadow: 0 0 1px 2px #1800ff;
+  border-radius: 10px;
   width: 300px;
   text-align: center;
   font-family: arial;
   :hover {
-    box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
+    box-shadow: 1px 1px 4px 8px rgba(0, 0, 0, 0.3);
   }
-  & button {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
+
   & button:hover {
     opacity: 0.7;
+    cursor: pointer;
   }
   & img {
     padding-top: 10px;
     border: 1px solid grey;
   }
+`;
+const AddBtn = styled.button`
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: ${(p) => (p.isAdded ? "blue" : "#000")};
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
 `;
 const BookRate = styled.p`
   color: grey;
@@ -38,6 +40,10 @@ const BookRate = styled.p`
 `;
 
 const Book = (props) => {
+  const isAddedInCart = props.cart && props.cart.includes(props.id);
+  const onClick = (id) => {
+    props.onClick(id, isAddedInCart ? "remove" : "");
+  };
   return (
     <BookTile>
       <img alt="book Image" height={150} width={100} src={props.thumbnailUrl} />
@@ -49,7 +55,9 @@ const Book = (props) => {
 
       <div style={{ bottom: "5px" }}>
         <p>
-          <button onClick={props.onClick}>More Details</button>
+          <AddBtn isAdded={isAddedInCart} onClick={() => onClick(props.id)}>
+            {isAddedInCart ? "Remove" : "Add to Cart"}
+          </AddBtn>
         </p>
       </div>
     </BookTile>
@@ -59,7 +67,9 @@ const Book = (props) => {
 export default Book;
 Book.propTypes = {
   auther: PropTypes.any,
+  id: PropTypes.any,
   shortDescription: PropTypes.any,
   title: PropTypes.any,
   thumbnailUrl: PropTypes.any,
+  cart: PropTypes.any,
 };

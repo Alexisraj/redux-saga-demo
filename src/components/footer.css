@@ -3,12 +3,24 @@
   background: #1800ff;
   height: 300px;
   width: 100%;
-
   bottom: 0;
 }
-.footer > h1 {
+
+.quote {
+  padding-top: 50px;
+  font-size: 1.5rem;
   color: #fff;
+  font-style: italic;
+  width: 100%;
+  display: flex;
   justify-content: center;
   align-items: center;
-  top: 100px;
+}
+.quoteBy {
+  font-size: 1rem;
+  color: #fff;
+  padding-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
