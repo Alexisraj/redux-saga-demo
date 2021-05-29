@@ -28,8 +28,9 @@ const Loading = styled.div`
   position: fixed;
 `;
 const Content = (props) => {
-  const onBookClick = (book) => {
-    props.updateSelectedBook(book);
+  const onBookClick = (bookId, type) => {
+    if (type === "remove") props.removeItem(bookId);
+    else props.addToCart(bookId);
   };
   useEffect(() => {
     if (!props.loading) {
@@ -68,15 +69,23 @@ const Content = (props) => {
       <div className="Counter">
         <p>{props.books?.length ?? 0}</p>
       </div>
+      <div className="Cart">
+        <div style={{ margin: "0 auto", display: "table" }}>
+          <img className="Cartimg" src={"./cart.png"} alt="a"></img>
+          <p className="CartSize">{props.cart?.length}</p>
+        </div>
+      </div>
       <div style={{ minHeight: "700px" }}>
         {props.books?.length > 0 && (
           <BookCollection>
             {props.books.map((b) => (
               <Book
                 auther={b.authors}
+                cart={props.cart}
+                id={b.isbn}
                 title={b.title}
                 thumbnailUrl={b.thumbnailUrl}
-                onClick={() => onBookClick(b)}
+                onClick={onBookClick}
               />
             ))}
           </BookCollection>

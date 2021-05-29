@@ -39,6 +39,10 @@ const BookRate = styled.p`
 `;
 
 const Book = (props) => {
+  const isAddedInCart = props.cart && props.cart.indexOf(props.id);
+  const onClick = (id) => {
+    props.onClick(id, isAddedInCart ? "remove" : "");
+  };
   return (
     <BookTile>
       <img alt="book Image" height={150} width={100} src={props.thumbnailUrl} />
@@ -50,7 +54,9 @@ const Book = (props) => {
 
       <div style={{ bottom: "5px" }}>
         <p>
-          <button onClick={props.onClick}>Add to Cart</button>
+          <button onClick={() => onClick(props.id)}>
+            {isAddedInCart ? "Remove" : "Add to Cart"}
+          </button>
         </p>
       </div>
     </BookTile>
@@ -60,7 +66,9 @@ const Book = (props) => {
 export default Book;
 Book.propTypes = {
   auther: PropTypes.any,
+  id: PropTypes.any,
   shortDescription: PropTypes.any,
   title: PropTypes.any,
   thumbnailUrl: PropTypes.any,
+  cart: PropTypes.any,
 };

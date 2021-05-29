@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import GridLoader from "react-spinners/GridLoader";
 import "./pages.css";
 
 const LoadCss = styled.div`

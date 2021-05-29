@@ -12,14 +12,15 @@ const mapStateToProps = (state) => {
     totalBooks: state.bookStore.totalBooks,
     showPopup: state.bookStore.showPopup,
     currentPageNo: state.bookStore.currentPageNo,
+    cart: state.bookStore.cart,
   };
 };
 
 const mapDispathToProps = (dispatch) => {
   return {
     fetchBooks: (pageNo) => dispatch(actions.fetchBooks(pageNo)),
-    updateSelectedBook: (book) => dispatch(actions.UpdateSelectedBook(book)),
-    clearSelection: () => dispatch(actions.clearSelection()),
+    addToCart: (bookId) => dispatch(actions.AddToCart(bookId)),
+    removeItem: (bookId) => dispatch(actions.removeInCart(bookId)),
   };
 };
 const BookContainer = connect(mapStateToProps, mapDispathToProps)(App);
