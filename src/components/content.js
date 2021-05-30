@@ -43,6 +43,7 @@ const Content = (props) => {
         localStorage.removeItem("height");
       }
     }
+    window.addEventListener("scroll", handleScroll);
   }, [props]);
 
   const toastOptions = {
@@ -61,11 +62,11 @@ const Content = (props) => {
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       localStorage.setItem("height", window.scrollY);
-
+      window.removeEventListener("scroll", handleScroll);
       props?.fetchBooks(props.currentPageNo + 1);
     }
   };
-  window.addEventListener("scroll", handleScroll);
+
   return (
     <>
       <ToastContainer />
