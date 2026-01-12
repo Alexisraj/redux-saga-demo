@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { StrictMode, useEffect } from "react";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import Content from "./components/content";
@@ -17,18 +17,20 @@ const App = (props) => {
 
   return (
     <>
-      <Router>
-        <Header />
-        <Switch>
-          <Route
-            path="/"
-            exact
-            component={() => <Content {...props} />}
-          ></Route>
-          <Route path="/cart" exact component={Cart}></Route>
-          <Route path="/contact" exact component={Contact}></Route>
-        </Switch>
-      </Router>
+      <StrictMode>
+        <Router>
+          <Header />
+          <Switch>
+            <Route
+              path="/"
+              exact
+              component={() => <Content {...props} />}
+            ></Route>
+            <Route path="/cart" exact component={Cart}></Route>
+            <Route path="/contact" exact component={Contact}></Route>
+          </Switch>
+        </Router>
+      </StrictMode>
       <Footer />
     </>
   );

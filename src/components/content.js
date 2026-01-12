@@ -74,6 +74,9 @@ const Content = (props) => {
         <p>{props.books?.length ?? 0}</p>
       </div>
       <div className="Cart">
+        {/* <input 
+          type="file" accept=".pdf"
+          /> */}
         <div style={{ margin: "0 auto", display: "table" }}>
           <img
             className="Cartimg"
